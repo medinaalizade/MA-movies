@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Main Wrapper */
+.navbar {
+    background-color: #000000;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+    padding: 0 4%; /* Responsive padding */
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #f5c518;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links & Genre Button */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    background: transparent;
+    border: 1px solid #444;
+    border-radius: 25px;
+    padding: 7px 20px;
+    color: #efefef;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    color: #f5c518;
+    border-color: #f5c518;
+}
+
+.nav-genre-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid #444;
+    padding: 7px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-genre-btn:hover {
+    border-color: #f5c518;
+    color: #f5c518;
+    background: rgba(245, 197, 24, 0.05);
+}
+
+.nav-genre-btn.active {
+    background-color: #f5c518;
+    color: #000;
+    border-color: #f5c518;
+    box-shadow: 0 0 15px rgba(245, 197, 24, 0.2);
+}
+
+/* Search Bar & Actions */
+.nav-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-search {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    padding: 10px 40px 10px 18px;
+    border-radius: 30px;
+    outline: none;
+    width: 220px;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-search:focus {
+    width: 320px;
+    border-color: #f5c518;
+    background: #222;
+    box-shadow: 0 0 10px rgba(245, 197, 24, 0.1);
+}
