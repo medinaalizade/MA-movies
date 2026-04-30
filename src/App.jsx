@@ -8,7 +8,8 @@ import MovieDetails from './pages/MovieDetails';
 
 function App() {
   return (
-    <Router basename='/AMmovies/'>
+    /* REMOVE basename for local testing, or use the fix below */
+    <Router basename='/AMmovies'> 
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,8 +18,6 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </Router>
-  
-  )
+  );
 }
-
 export default App
