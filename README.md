@@ -27,3 +27,4 @@ Styling: Custom CSS3 (Flexbox & Grid)
 
 🔍Quick access:
 
+https://medinaalizade.github.io/AMmovies/
