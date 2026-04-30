@@ -5,12 +5,11 @@ import Home from './pages/Home';
 import Main from './pages/Main';
 import MovieDetails from './pages/MovieDetails';
 
+const isProd = import.meta.env.MODE === 'production';
 
 function App() {
   return (
-    /* REMOVE basename for local testing, or use the fix below */
-    <Router basename='/AMmovies'> 
-      <Navbar />
+<Router basename={isProd ? '/AMmovies' : ''}>      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main type="movie" />} />
