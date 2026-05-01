@@ -3,10 +3,11 @@ import { Link, useNavigate, useSearchParams, useLocation } from "react-router-do
 import "../styles/Navbar.css";
 
 const Navbar = () => {
-    const [searchTerm, setSearchTerm] = useState(""); // Track input
+    const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     const [searchParams] = useSearchParams();
+    const [menuOpen, setMenuOpen] = useState(false);
     
     const isGenreOpen = searchParams.get("showGenres") === "true";
 
@@ -33,7 +34,11 @@ const Navbar = () => {
             <div className="nav-container">
                 <Link to="/" className="logo">MAmovies</Link>
 
-                <ul className="nav-links">
+                <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+                    ☰
+                </button>
+
+                <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/main">Movies</Link></li>
                     <li><Link to="/tv">TV Series</Link></li>

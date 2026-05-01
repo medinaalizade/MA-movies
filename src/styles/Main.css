@@ -323,3 +323,135 @@
         grid-template-columns: repeat(2, 1fr); /* 2 per line on mobile */
     }
 }
+
+/* better modal */
+.modal-content {
+    width: 90%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+/* large tablets */
+@media (max-width: 1200px) {
+    .top-ten-sidebar {
+        min-width: 240px;
+    }
+
+    .hero-info h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* tablet */
+@media (max-width: 992px) {
+    .layout-wrapper {
+        flex-direction: column;
+    }
+
+    .movies-block {
+        width: 100%;
+    }
+
+    .top-ten-sidebar {
+        width: 100%;
+        min-width: unset;
+        position: static;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .filter-bar {
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .filter-btns {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .filter-btns button {
+        margin-left: 0;
+    }
+}
+
+/* phone */
+@media (max-width: 768px) {
+    .main-hero {
+        height: 55vh;
+        padding: 25px;
+    }
+
+    .hero-info h1 {
+        font-size: 2rem;
+    }
+
+    .play-btn {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .genre-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .genre-pill {
+        flex-shrink: 0;
+    }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* small phone */
+@media (max-width: 480px) {
+    .content-container {
+        padding: 0 5%;
+    }
+
+    .main-hero {
+        height: 45vh;
+        padding: 20px;
+    }
+
+    .hero-info h1 {
+        font-size: 1.5rem;
+    }
+
+    .filter-bar h2 {
+        font-size: 1.3rem;
+    }
+
+    .movie-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .movie-card img {
+        max-width: 320px;
+        margin: auto;
+        display: block;
+    }
+
+    .top-item {
+        gap: 10px;
+    }
+
+    .rank-number {
+        font-size: 1.2rem;
+    }
+}

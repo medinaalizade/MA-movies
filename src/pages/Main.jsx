@@ -91,7 +91,7 @@ const Main = ({ type = "movie" }) => {
             {showModal && (
                 <div className="modal-overlay" onClick={() => setShowModal(false)}>
                     <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <iframe width="100%" height="450px" src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`} frameBorder="0" allowFullScreen title="trailer"></iframe>
+                        <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`} frameBorder="0" allowFullScreen title="trailer"></iframe>
                     </div>
                 </div>
             )}

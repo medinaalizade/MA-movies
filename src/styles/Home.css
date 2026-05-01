@@ -1,230 +1,166 @@
 .home-container {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-image: url('https://w.wallhaven.cc/full/0p/wallhaven-0p1vje.jpg');
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-repeat: no-repeat;
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.25);
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  padding: 20px;
 }
 
 .hero-content {
-  color: white;
-  width: 90%;
-  max-width: 1000px;
-  padding: 40px;
-  animation: fadeIn 1.2s ease-in-out;
-}
-
-.hero-title {
-  font-size: 5rem;
-  font-weight: 800;
-  color: #f5c518;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-}
-
-.hero-subtitle {
-  font-size: 1.4rem;
-  margin-bottom: 40px;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-.search-box {
-  display: flex;
-  background: white;
-  border-radius: 50px;
-  padding: 8px;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto 30px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  animation: fadeIn 1s ease;
 }
 
-.main-search-bar {
+/* Search pill */
+.hero-search-wrapper {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 6px 8px 6px 24px;
+  border-radius: 60px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.hero-input {
   flex: 1;
   border: none;
-  padding: 15px 25px;
-  font-size: 1.2rem;
-  border-radius: 50px 0 0 50px;
   outline: none;
+  background: transparent;
+  font-size: 1.05rem;
   color: #333;
+  padding: 12px 0;
+  min-width: 0;
 }
 
-.search-btn {
-  background-color: #f5c518;
-  color: #000;
+.hero-search-btn {
   border: none;
-  padding: 0 45px;
-  font-weight: bold;
+  background: #f5c518;
+  color: black;
+  padding: 13px 32px;
+  border-radius: 40px;
   font-size: 1rem;
-  border-radius: 50px;
+  font-weight: 800;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: .3s;
+  white-space: nowrap;
 }
 
-.search-btn:hover {
-  background-color: #e2b616;
+.hero-search-btn:hover {
+  background: #e2b616;
   transform: scale(1.02);
 }
 
 .explore-btn {
-  background: rgba(245, 197, 24, 0.1);
+  background: transparent;
   border: 2px solid #f5c518;
   color: #f5c518;
-  padding: 15px 50px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 50px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  transition: .3s;
 }
 
 .explore-btn:hover {
   background: #f5c518;
-  color: #000;
-  transform: translateY(-3px);
+  color: black;
+  transform: translateY(-2px);
 }
 
-/*Entry animation */
+/* animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Responsive adjustment */
+/* tablet */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
+  .hero-content {
+    gap: 18px;
   }
 
-  .search-box {
+  .hero-search-wrapper {
+    padding: 6px 6px 6px 18px;
+  }
+
+  .hero-input {
+    font-size: 0.95rem;
+  }
+
+  .hero-search-btn {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+  }
+
+  .explore-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* phone */
+@media (max-width: 560px) {
+  .hero-search-wrapper {
     flex-direction: column;
-    border-radius: 20px;
-  }
-
-  .main-search-bar {
-    border-radius: 20px;
-    text-align: center;    
-  }
-
-  .search-btn {
+    gap: 10px;
+    border-radius: 24px;
     padding: 15px;
-    border-radius: 20px;
-    margin-top: 10px;
+  }
+
+  .hero-input {
+    width: 100%;
+    text-align: center;
+    padding: 6px 0;
+  }
+
+  .hero-search-btn {
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .explore-btn {
+    width: 100%;
   }
 }
 
-.hero-search-container {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 50px; /* Makes it a pill */
-    padding: 5px 5px 5px 20px; /* Internal spacing */
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+/* very small phones */
+@media (max-width: 380px) {
+  .hero-overlay {
+    padding: 15px;
+  }
 
-.hero-search-container input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    color: #333;
-}
+  .hero-input {
+    font-size: 0.9rem;
+  }
 
-.hero-search-container button {
-    background-color: #f5c518;
-    color: black;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 40px; 
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.hero-search-container button:hover {
-    background-color: #e2b616;
-}
-
-/* The container that holds everything */
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* The "Pill" wrapper */
-.hero-search-wrapper {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 5px 8px 5px 25px; /* Space inside for the input and button */
-    border-radius: 50px;
-    width: 100%;
-    max-width: 650px; /* Adjust size as needed */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* The actual text input field */
-.hero-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    padding: 10px 0;
-    background: transparent;
-    color: #333;
-}
-
-/* The Button inside the Pill */
-.hero-search-btn {
-    background-color: #f5c518;
-    color: #000;
-    border: none;
-    padding: 12px 35px;
-    border-radius: 40px;
-    font-weight: 800;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.hero-search-btn:hover {
-    background-color: #e2b616;
-    transform: scale(1.02);
-}
-
-/* The 'Go to dashboard' button below */
-.explore-btn {
-    background: transparent;
-    border: 2px solid #f5c518;
-    color: #f5c518;
-    padding: 10px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.explore-btn:hover {
-    background: #f5c518;
-    color: black;
+  .hero-search-btn,
+  .explore-btn {
+    font-size: 0.9rem;
+    padding: 11px 18px;
+  }
 }
