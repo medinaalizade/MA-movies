@@ -9,8 +9,8 @@ const isProd = import.meta.env.MODE === 'production';
 
 function App() {
   return (
-<Router basename="/MA-movies">      
-    <Navbar />
+    <Router basename="/MA-movies"> 
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main type="movie" />} />
