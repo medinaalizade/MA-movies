@@ -1,10 +1,35 @@
+/* --- 1. CORE LAYOUT --- */
+:root {
+  --accent-color: #f5c518;
+  --bg-dark: #121212;
+  --bg-card: #1a1a1a;
+  --text-muted: #aaa;
+}
+
 .main-page {
-  background-color: #121212;
+  background-color: var(--bg-dark);
   color: white;
   min-height: 100vh;
 }
 
-/* Hero Section */
+.content-container {
+  width: 100%;
+  padding: 0 4%;
+}
+
+.layout-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+.movies-block {
+  flex: 3.5;
+}
+
+/* --- 2. HERO SECTION --- */
 .main-hero {
   height: 70vh;
   background-size: cover;
@@ -18,27 +43,31 @@
   max-width: 600px;
 }
 
-.hero-info h1 { font-size: 3rem; margin-bottom: 10px; }
+.hero-info h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
 
 .play-btn {
-  background: #f5c518;
+  background: var(--accent-color);
   border: none;
   padding: 10px 25px;
   font-weight: bold;
   border-radius: 5px;
   margin-top: 15px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.content-container {
-  width: 100%;
-  padding: 0 4%;
-  margin: 0;
+.play-btn:hover {
+  filter: brightness(1.1);
 }
 
+/* --- 3. FILTER BAR & GENRES --- */
 .filter-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -52,69 +81,200 @@
 }
 
 .filter-btns button.active {
-  color: #f5c518;
-  border-bottom: 2px solid #f5c518;
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
 }
 
-/* Movie Grid */
+.clear-filters-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05); /* Subtle dark background */
+    color: #a0a0a0; /* Grey text */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 50px; /* Pill shape to match your genre tags */
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.clear-filters-btn:hover {
+    background: rgba(220, 38, 38, 0.1); /* Subtle red tint */
+    color: #ef4444; /* Brighter red text */
+    border-color: #ef4444;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.clear-icon {
+    font-style: normal;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.clear-filters-btn:hover .clear-icon {
+    transform: rotate(90deg); /* Cool little animation on hover */
+}
+
+/* Genre Transition Logic */
+.genre-section-wrapper {
+  display: none;
+  /* grid-template-rows: 0fr; */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.genre-section-wrapper.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  /* grid-template-rows: 1fr; */
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.genre-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.genre-pill {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.genre-pill:hover {
+  border-color: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.genre-pill.active {
+  background: var(--accent-color);
+  color: black;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(245, 197, 24, 0.3);
+}
+
+/* --- 4. MOVIE GRID & CARDS --- */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 25px;
-  width: 100%;
+  padding: 20px 0;
 }
 
 .movie-card {
+display: flex;
+    flex-direction: column;
     cursor: pointer;
-}
-
-.movie-card:hover h3,
-.top-item:hover .top-item-name {
-    color: #f5c518;
+    background: #1a1a1a; 
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .movie-card img {
   width: 100%;
-  aspect-ratio: 2/3; /* Keeps all posters perfectly uniform */
-  border-radius: 8px;
-  transition: transform 0.3s;
+  display: block;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
   object-fit: cover;
+  background-color: #222;
 }
 
-.movie-card:hover img { transform: scale(1.05); }
+.movie-card:hover img {
+  transform: scale(1.03);
+}
 
-.card-info h3 { font-size: 0.9rem; margin: 10px 0 5px; }
+.movie-card:hover h3 {
+  color: var(--accent-color);
+}
 
-/* Sidebar */
-.sidebar {
-  background: #1a1a1a;
+.card-info {
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80px;
+}
+
+.card-info h3 {
+  font-size: 0.95rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+.rating { color: var(--accent-color); font-weight: bold; }
+.year { background: #333; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+
+/* --- 5. SIDEBAR (TOP 10) --- */
+.top-ten-sidebar {
+  flex: 1;
+  min-width: 280px;
+  background: #111;
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 8px;
-  height: fit-content;
+  position: sticky;
+  top: 90px;
+  border: 1px solid #222;
 }
 
 .top-item {
-  cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 15px;
   padding: 10px 0;
-  border-bottom: 1px solid #333;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.rank {
+.top-item:hover { transform: translateX(5px); }
+.top-item:hover .top-item-name { color: var(--accent-color); }
+
+.rank-number {
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #f5c518;
-  margin-right: 15px;
+  font-weight: 900;
+  color: #444;
+  min-width: 25px;
 }
 
+.top-item img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* --- 6. MODAL & LOADER --- */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
@@ -123,335 +283,174 @@
 }
 
 .modal-content {
-  width: 80%;
-  max-width: 800px;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
   background: #000;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 2001;
-}
-
-.loader {
-  color: #f5c518;
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 100px;
-}
-
-.card-info h3 {
-  font-size: 0.95rem;
-  margin: 10px 0 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Prevents long titles from breaking the card */
-}
-
-.card-meta {
+.pagination {
   display: flex;
-  justify-content: space-between; /* Pushes rating to left and year to right */
+  justify-content: center;
   align-items: center;
-  font-size: 0.85rem;
-  color: #bbb; /* Subtle grey color */
-}
-
-.rating {
-  color: #f5c518; /* Yellow for the star */
-  font-weight: bold;
-}
-
-.year {
-  background: #333;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-}
-
-.genre-container {
-  margin-bottom: 20px;
-  overflow-x: auto; /* Allows scrolling on small screens */
-  padding-bottom: 10px;
-}
-
-.genre-list {
-  display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  margin: 40px 0;
+  padding-bottom: 20px;
 }
 
-.genre-pill {
-  background: #222;
-  color: #ccc;
-  border: 1px solid #444;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+.pagination button {
+  background: #1a1a1a;
+  color: #888;
+  border: 1px solid #333;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.genre-pill:hover {
-  border-color: #f5c518;
+.pagination button:hover:not(:disabled) {
+  border-color: var(--accent-color);
   color: white;
 }
 
-.genre-pill.active {
-  background: #f5c518;
+.pagination button.active {
+  background: var(--accent-color);
   color: black;
-  border-color: #f5c518;
-  font-weight: bold;
-}
- 
-.clear-btn {
-  background: transparent;
-  border: none;
-  color: #ff4d4d;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 8px;
+  border-color: var(--accent-color);
 }
 
-.clear-btn:hover {
-  text-decoration: underline;
+.pagination button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
-/* Container for Grid + Sidebar */
-.layout-wrapper {
-    display: flex;
-    width: 100%;
-    gap: 30px;
-    align-items: flex-start;
-    padding: 20px 0;
-}
-
-.movies-block {
-    flex: 3.5; 
-}
-
-/* Sidebar Styling */
-.top-ten-sidebar {
-    flex: 1;
-    min-width: 280px;
-    background: #111;
-    border-radius: 12px;
-    padding: 20px;
-    position: sticky;
-    top: 90px; /* Sticks to the top while scrolling */
-    border: 1px solid #222;
-}
-
-.sidebar-title {
-    color: #f5c518;
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-}
-
-.top-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.top-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.top-item:hover {
-    transform: translateX(5px);
-}
-
-.rank-number {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #444;
-    min-width: 25px;
-}
-
-.top-item img {
-    width: 50px;
-    height: 75px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.top-item-info h4 {
-    font-size: 0.9rem;
-    color: white;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.top-item-info p {
-    font-size: 0.8rem;
-    color: #aaa;
-    margin-top: 4px;
-}
-
-
-@media (max-width: 1400px) {
-    .movie-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 per line on smaller laptops */
+/* --- MOVIE CARD ANIMATION --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.movie-card {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* --- PAGINATION STYLES --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 50px 0;
+}
+
+.pagination button {
+    background: #1a1a1a;
+    color: #888;
+    border: 1px solid #333;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.pagination button:hover:not(:disabled) {
+    border-color: #f5c518;
+    color: white;
+}
+
+.pagination button.active {
+    background: #f5c518;
+    color: black;
+    border-color: #f5c518;
+}
+
+.pagination button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.genre-section-wrapper {
+    display: grid;
+    grid-template-rows: 0fr; 
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                margin 0.5s ease, /* Changed from margin-bottom to margin */
+                opacity 0.4s ease;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0; /* Force it to take zero space when hidden */
+}
+
+.genre-section-wrapper.show {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 10px;    /* Adds a little breathing room from the hero */
+    margin-bottom: 20px; /* Space between genres and the grid */
+}
+
+/* --- 7. RESPONSIVE QUERIES --- */
+@media (max-width: 1400px) {
+  .movie-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 1100px) {
-    .layout-wrapper {
-        flex-direction: column; /* Sidebar moves to bottom on mobile */
-    }
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 per line on mobile */
-    }
+  .layout-wrapper { flex-direction: column; }
+  .top-ten-sidebar { width: 100%; position: static; }
+  .movie-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* better modal */
-.modal-content {
-    width: 90%;
-    max-width: 900px;
-    aspect-ratio: 16 / 9;
-    height: auto;
-}
-
-/* large tablets */
-@media (max-width: 1200px) {
-    .top-ten-sidebar {
-        min-width: 240px;
-    }
-
-    .hero-info h1 {
-        font-size: 2.5rem;
-    }
-}
-
-/* tablet */
-@media (max-width: 992px) {
-    .layout-wrapper {
-        flex-direction: column;
-    }
-
-    .movies-block {
-        width: 100%;
-    }
-
-    .top-ten-sidebar {
-        width: 100%;
-        min-width: unset;
-        position: static;
-    }
-
-    .movie-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    .filter-bar {
-        flex-wrap: wrap;
-        gap: 15px;
-        align-items: center;
-    }
-
-    .filter-btns {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-
-    .filter-btns button {
-        margin-left: 0;
-    }
-}
-
-/* phone */
 @media (max-width: 768px) {
-    .main-hero {
-        height: 55vh;
-        padding: 25px;
-    }
-
-    .hero-info h1 {
-        font-size: 2rem;
-    }
-
-    .play-btn {
-        width: 100%;
-        max-width: 220px;
-    }
-
-    .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-
-    .genre-list {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 5px;
-    }
-
-    .genre-pill {
-        flex-shrink: 0;
-    }
-
-    .sidebar-title {
-        font-size: 1.2rem;
-    }
+  .main-hero { height: 55vh; padding: 25px; }
+  .hero-info h1 { font-size: 2rem; }
+  .movie-grid { grid-template-columns: repeat(2, 1fr); }
+  .genre-list { flex-wrap: nowrap; overflow-x: auto; }
+  .filter-bar { flex-direction: column; align-items: flex-start; gap: 15px; }
 }
 
-/* small phone */
 @media (max-width: 480px) {
-    .content-container {
-        padding: 0 5%;
-    }
-
-    .main-hero {
-        height: 45vh;
-        padding: 20px;
-    }
-
-    .hero-info h1 {
-        font-size: 1.5rem;
-    }
-
-    .filter-bar h2 {
-        font-size: 1.3rem;
-    }
-
-    .movie-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
-
-    .movie-card img {
-        max-width: 320px;
-        margin: auto;
-        display: block;
-    }
-
-    .top-item {
-        gap: 10px;
-    }
-
-    .rank-number {
-        font-size: 1.2rem;
-    }
+  .movie-grid { grid-template-columns: 1fr; }
+  .hero-info h1 { font-size: 1.5rem; }
 }
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to the cards */
+.movie-card {
+  opacity: 0; /* Start invisible */
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Stagger effect: First few cards load slightly after each other */
+.movie-card:nth-child(1) { animation-delay: 0.1s; }
+.movie-card:nth-child(2) { animation-delay: 0.15s; }
+.movie-card:nth-child(3) { animation-delay: 0.2s; }
+.movie-card:nth-child(4) { animation-delay: 0.25s; }
+.movie-card:nth-child(5) { animation-delay: 0.3s; }
+.movie-card:nth-child(n+6) { animation-delay: 0.35s; } /* The rest pop in together */
